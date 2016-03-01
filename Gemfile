@@ -43,7 +43,7 @@ end
 
 group :production do
 #Heroku uses the PostgreSQL database so we need the pg gem
-  gem 'pg', '0.17.1'
+  gem 'pg'
 #used by Heroku to serve static assets such as images and stylesheets
   gem 'rails_12factor', '0.0.2'
 end
