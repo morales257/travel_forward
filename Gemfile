@@ -50,4 +50,6 @@ group :production do
   gem 'pg'
 #used by Heroku to serve static assets such as images and stylesheets
   gem 'rails_12factor', '0.0.2'
+#change our webserver to HTTP webserver Puma to handle our app in production
+  gem 'puma', '2.11.1'
 end
