@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
+  #include ActionView::SessionsHelper
+
   test "invalid signup submission" do
     get signup_path
     #assert_no_difference makes sure that evaluating the numeric result of an
@@ -21,5 +23,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         password_confirmation: "foobar"}
     end
     assert_template 'users/show'
+    assert is_logged_in?
   end
 end

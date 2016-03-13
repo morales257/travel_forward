@@ -4,6 +4,9 @@
   #name: MyString
   #email: MyString
 
-#two:
-#  name: MyString
-#  email: YourString
+#recreate the same attributes from the user model
+#we define digest in the user model to digest a given string
+michael:
+  name: Michael Example
+  email: michael@example.com
+  password_digest: <%= User.digest('password')%>
