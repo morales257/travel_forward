@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  country: MyString
+  locations: MyString
+  trip_duration: MyString
+  budget: 1
+  tip: MyText
+
+two:
+  country: MyString
+  locations: MyString
+  trip_duration: MyString
+  budget: 1
+  tip: MyText

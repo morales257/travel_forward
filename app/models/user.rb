@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
 has_secure_password
 validates :password, presence: true, length: {minimum: 6}
 
+#each user can have many itineraries
+#make sure if user is deleted, itineraries are also
+has_many :itineraries, dependent: :destroy
+
 # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
