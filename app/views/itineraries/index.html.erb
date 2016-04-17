@@ -1,0 +1,33 @@
+<h1> <%= params[:search].titleize%> </h1>
+<div class = "row">
+<% if @itineraries.blank? %>
+<div class= "jumbotron">
+
+<img src="https://d13yacurqjgara.cloudfront.net/users/502620/screenshots/1523145/fighter_plane_line.gif"
+style= "width:400px;height:300px">
+<br>
+ <h3> Sorry, we have no itineraries for that country. </h3>
+
+</div>
+<% else %>
+<% @itineraries.each do |itin| %>
+<div class = "col-md-2">
+<div class = "itin-preview-container">
+
+<%= link_to image_tag(itin.document.url(:medium)), itin %>
+<div class= "itinerary-stats">
+<ul>
+  <li> Cities:  <%= itin.locations %> </li>
+  <li> Duration: <%= itin.trip_duration %> </li>
+  <li> Budget: $ <%= itin.budget %> </li>
+</ul>
+
+</div>
+</div>
+</div>
+
+
+<% end %>
+<% end %>
+
+</div>

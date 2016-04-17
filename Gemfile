@@ -28,6 +28,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'web-console', '~> 2.0', group: :development
 #Paperclip file upload
 gem "paperclip", "~> 4.3"
+#PDF viewer for uploaded PDFs
+gem 'pdfjs_viewer-rails', '~> 0.0.7'
+#PDF Reader
+gem 'pdf-reader'
+#Create new PDFs
+gem 'prawn', '~> 2.1'
+#Controller level responder
+gem 'responders', '~> 2.0'
+# Geocode the countries for search
+gem 'geocoder'
 
 
 # Use ActiveModel has_secure_password
@@ -46,6 +56,12 @@ group :development, :test do
   gem 'spring'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  #Rspec for behavior driven development testing
+  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+  #Factories for testing data
+  gem 'factory_girl_rails', '~> 4.7'
+  #Clean database for testing
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
 end
 
 group :production do

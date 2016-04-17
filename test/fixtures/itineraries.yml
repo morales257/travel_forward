@@ -1,11 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  country: MyString
-  locations: MyString
-  trip_duration: MyString
-  budget: 1
-  tip: MyText
+  country: "Italy"
+  locations: "Venice"
+  trip_duration: "2 weeks"
+  budget: 3000
+  document_file_name: "itinerary_2.pdf"
+  user: michael
 
 two:
   country: MyString

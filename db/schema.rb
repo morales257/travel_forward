@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318014637) do
+ActiveRecord::Schema.define(version: 20160326223421) do
 
   create_table "itineraries", force: :cascade do |t|
     t.string   "country"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20160318014637) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "itineraries", ["user_id"], name: "index_itineraries_on_user_id"

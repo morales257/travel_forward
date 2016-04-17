@@ -1,0 +1,27 @@
+<% provide(:title," #{@itinerary.country} Guide")%>
+<div class="row">
+<div class="col-md-8">
+  <h1> <%= @itinerary.user_id %>'s <%= @itinerary.country%> Guide </h1>
+  <iframe class="itinerary-viewer" src = <%=  pdfjs.full_path(file: "#{itinerary_path(@itinerary, format: "pdf")}") %>
+    frameborder= " 0"></iframe>
+</div>
+<aside class= "col-md-4">
+  <section>
+    <h2><%= @itinerary.user.name %></h2>
+
+  make partial with user static_pages
+
+  <h3>Duration</h3>
+  <p><%= @itinerary.trip_duration%></p>
+
+  <h3>Budget</h3>
+  <p><%= @itinerary.budget%></p>
+
+  <h3>Cities Visited</h3>
+  <p><%= @itinerary.locations%></p>
+
+<%= button_tag "Download Itinerary", class: "btn btn-default" %>
+  </section>
+</aside>
+
+</div>

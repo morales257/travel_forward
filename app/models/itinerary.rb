@@ -1,3 +1,18 @@
 class Itinerary < ActiveRecord::Base
   belongs_to :user
+  validates :user_id, presence: true
+  validates :country, presence: true
+  validates :locations, presence: true
+  validates :trip_duration, presence: true
+  validates :budget, presence: true, numericality: { only_integer: true}
+  has_attached_file :document, styles: { medium: ["165x210#", :jpg]}
+  validates_attachment_presence :document
+  validates_attachment_content_type :document, content_type: ['application/pdf']
+
+  #Geocode by country
+  geocoded_by :country
+  after_validation :geocode
+
+
+
 end

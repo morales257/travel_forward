@@ -5,6 +5,16 @@ class ApplicationController < ActionController::Base
   #including helpers in the base controller it makes them available to all
   #controllers as well
   include SessionsHelper
+  include ItinerariesHelper
 
+  private
+
+  #Confirm a logged-in user_id
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
+  end
 
 end
