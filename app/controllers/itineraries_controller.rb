@@ -1,6 +1,6 @@
 class ItinerariesController < ApplicationController
   respond_to :html, :js
-  before_action :logged_in_user, only: [:new]
+  before_action :logged_in_user, only: [:new, :create]
 
   def index
     if params[:search].blank?

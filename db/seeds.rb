@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'paperclip'
 
-user = User.create!({name: "Luis Morales", email: "luis@itineraryapp.com", password: "foobar",
+user = User.create!({name: "Example Morales", email: "example_user@itineraryapp.com", password: "foobar",
   password_confirmation: "foobar"})
 
   user.itineraries.create!({country: "Italy", locations: "Rome, Venice, Florence",

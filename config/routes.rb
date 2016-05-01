@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :itineraries
+  resources :itineraries do
+    resources :reviews
+  end
 
   mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
 

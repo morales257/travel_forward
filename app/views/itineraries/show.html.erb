@@ -4,7 +4,33 @@
   <h1> <%= @itinerary.user_id %>'s <%= @itinerary.country%> Guide </h1>
   <iframe class="itinerary-viewer" src = <%=  pdfjs.full_path(file: "#{itinerary_path(@itinerary, format: "pdf")}") %>
     frameborder= " 0"></iframe>
+
+    <div class = "review-container">
+      <h2>What Travelers Thought</h2>
+      <%= link_to "Add Your Review", new_itinerary_review_path(@itinerary, @review) %>
+
+      <% if @itinerary.reviews.count > 0 %>
+      <% @itinerary.reviews.each do |review| %>
+      <div class = "reviews">
+        <div class = "star-rating" data-score= <%= review.rating %> ></div>
+        <p>
+          <%= review.comment %>
+        </p>
+
+        <% if  user_is_reviewer?(review) %>
+        <%= link_to "Delete", itinerary_review_path(@itinerary, review), method: 'delete', data: {confirm: "Are you sure you want to delete?"} %>
+        <% end %>
+
+      <% end %>
+     </div>
+      <% else %>
+      <h2>There are no reviews for this itinerary. Add one now.</h2>
+      <%= link_to "Add A Review", new_itinerary_review_path(@itinerary, @review),class: "btn-sm btn-primary", id: "review-button" %>
+      <% end %>
+    </div>
+
 </div>
+
 <aside class= "col-md-4">
   <section>
     <h2><%= @itinerary.user.name %></h2>
@@ -20,8 +46,25 @@
   <h3>Cities Visited</h3>
   <p><%= @itinerary.locations%></p>
 
+  <div class = 'star-rating' data-score = <%= avg_review(@itinerary) %> ></div>
+  <p>
+    <%= link_to "See All Reviews", itinerary_reviews_path(@itinerary, @review), remote:true %>
+  </p>
+
 <%= button_tag "Download Itinerary", class: "btn btn-default" %>
+
+
   </section>
 </aside>
 
 </div>
+
+<script>
+$('.star-rating').raty({
+  path: '/assets/',
+  readOnly: true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+</script>

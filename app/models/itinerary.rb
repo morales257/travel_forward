@@ -13,6 +13,8 @@ class Itinerary < ActiveRecord::Base
   geocoded_by :country
   after_validation :geocode
 
+  has_many :reviews
+
 
 
 end

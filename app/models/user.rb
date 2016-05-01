@@ -12,6 +12,7 @@ validates :password, presence: true, length: {minimum: 6}
 #each user can have many itineraries
 #make sure if user is deleted, itineraries are also
 has_many :itineraries, dependent: :destroy
+has_many :reviews
 
 # Returns the hash digest of the given string.
   def User.digest(string)

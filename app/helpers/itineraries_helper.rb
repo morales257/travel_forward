@@ -17,6 +17,21 @@ module ItinerariesHelper
 #  puts preview.text
 
 #end
+def user_is_reviewer?(review_id)
+  if logged_in?
+  current_user||= User.find(params[:id])
+  review = Review.find(review_id)
+  current_user.id == review.user_id
+  end
+end
+
+def avg_review(itin)
+  if itin.reviews.blank?
+    0
+  else
+    itin.reviews.average(:rating).round(2)
+  end
+end
 
 
 end
