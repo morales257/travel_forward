@@ -12,6 +12,7 @@ class ItinerariesController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
     @itinerary = Itinerary.find(params[:id])
     respond_to do |format|
       format.html

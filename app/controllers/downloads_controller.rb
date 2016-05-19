@@ -1,0 +1,20 @@
+class DownloadsController < ApplicationController
+  before_action :logged_in_user
+  def create
+    #download id is established in the download form
+    @itinerary = Itinerary.find(params[:downloaded_id])
+
+      current_user.download(@itinerary)
+
+      redirect_to @itinerary
+
+  end
+
+  def show
+    @itinerary = Itinerary.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf
+    end
+  end
+end

@@ -1,4 +1,4 @@
-
+<div class = "col-md-8">
 
 <h1>Your Itineraries</h1>
 <% if @user.itineraries.blank? %>
@@ -22,7 +22,31 @@
 <% end %>
 <% end %>
 
+<h1>Downloaded Itineraries</h1>
 
-  <div class = "col-md-8">
-    <h1>Downloaded Itineraries</h1>
+<% if @user.downloads.blank? %>
+
+<h2>You can find all the itineraries you downloaded here.</h2>
+
+<% else %>
+
+ <% @user.downloads.each do |itin| %>
+ <div class = "col-md-2">
+  <div class = "itin-preview-container">
+
+    <%= link_to image_tag(itin.downloaded.document.url(:medium)), itin %>
+    <div class= "itinerary-stats">
+      <ul>
+        <li> Cities:  <%= itin.downloaded.locations %> </li>
+        <li> Duration: <%= itin.downloaded.trip_duration %> </li>
+        <li> Budget: $ <%= itin.downloaded.budget %> </li>
+      </ul>
+
+    </div>
   </div>
+</div>
+
+<% end %>
+<% end %>
+
+</div>

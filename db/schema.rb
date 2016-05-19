@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422015850) do
+ActiveRecord::Schema.define(version: 20160501215533) do
+
+  create_table "downloads", force: :cascade do |t|
+    t.integer  "downloader_id"
+    t.integer  "downloaded_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "downloads", ["downloaded_id"], name: "index_downloads_on_downloaded_id"
+  add_index "downloads", ["downloader_id", "downloaded_id"], name: "index_downloads_on_downloader_id_and_downloaded_id", unique: true
+  add_index "downloads", ["downloader_id"], name: "index_downloads_on_downloader_id"
 
   create_table "itineraries", force: :cascade do |t|
     t.string   "country"

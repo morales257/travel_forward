@@ -15,6 +15,9 @@ class Itinerary < ActiveRecord::Base
 
   has_many :reviews
 
+  has_many :downloads, foreign_key: "downloaded_id"
+  has_many :downloaders, through: :downloads
+
 
 
 end

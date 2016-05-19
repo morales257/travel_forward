@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'downloads/create'
+
   get 'itinerary/index'
 
   # You can have the root of your site routed with "root"
@@ -15,6 +17,10 @@ Rails.application.routes.draw do
   resources :itineraries do
     resources :reviews
   end
+
+  resources :downloads, only: [:create, :show]
+
+
 
   mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
 

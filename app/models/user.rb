@@ -14,6 +14,11 @@ validates :password, presence: true, length: {minimum: 6}
 has_many :itineraries, dependent: :destroy
 has_many :reviews
 
+#no need for an explicit foreign_key, since Rails looks for the singular version
+#of the association
+has_many :downloads, foreign_key: 'downloader_id'
+has_many :downloadeds, through: :downloads
+
 # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -43,5 +48,15 @@ has_many :reviews
   #Forgets a user
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  #download an itinerary
+  def download(itinerary)
+    downloadeds.create(downloaded_id: itinerary.id)
+  end
+
+  #returns true if user has itinerary
+  def downloaded?(itinerary)
+    downloadeds.include?(itinerary)
   end
 end
