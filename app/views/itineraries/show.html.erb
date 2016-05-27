@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-8">
     <h1> <%= @itinerary.user_id %>'s <%= @itinerary.country%> Guide </h1>
-    <iframe class="itinerary-viewer" src="<%=  pdfjs.full_path(file: "#{itinerary_path(@itinerary, format: "pdf")}") %>"
+    <iframe class="itinerary-viewer" src= "<%=  pdfjs.full_path(file: "#{itinerary_path(@itinerary, format: :pdf)}") %>"
     frameborder="0">
     </iframe>
 
@@ -15,7 +15,7 @@
         <div class = "reviews">
           <div class = "star-rating" data-score= <%= review.rating %> ></div>
           <p>
-            <!-- <%= review.comment %> -->
+            <%= review.comment %>
           </p>
 
           <% if  user_is_reviewer?(review) %>

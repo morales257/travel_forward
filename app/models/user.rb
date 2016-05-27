@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 has_secure_password
 validates :password, presence: true, length: {minimum: 6}
 
+
 #each user can have many itineraries
 #make sure if user is deleted, itineraries are also
 has_many :itineraries, dependent: :destroy
@@ -18,6 +19,10 @@ has_many :reviews
 #of the association
 has_many :downloads, foreign_key: 'downloader_id'
 has_many :downloadeds, through: :downloads
+
+#credit balance of user
+has_one :credit #, foreign_key: 'user_id'
+
 
 # Returns the hash digest of the given string.
   def User.digest(string)
@@ -50,13 +55,31 @@ has_many :downloadeds, through: :downloads
     update_attribute(:remember_digest, nil)
   end
 
+  def set_balance
+    create_credit(credit_balance: 1)
+
+  end
+
   #download an itinerary
   def download(itinerary)
-    downloadeds.create(downloaded_id: itinerary.id)
+    total = self.credit.credit_balance
+    downloads.create(downloaded_id: itinerary.id)
+    total -= 1
+    credit.update_attributes(credit_balance: total)
   end
 
   #returns true if user has itinerary
   def downloaded?(itinerary)
     downloadeds.include?(itinerary)
+  end
+
+  def can_download(itinerary)
+    self.credit.credit_balance >= itinerary.credit_cost
+  end
+
+  def upload_credits
+    total = self.credit.credit_balance
+    total += 3
+    credit.update_attributes(credit_balance: total)
   end
 end

@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501215533) do
+ActiveRecord::Schema.define(version: 20160519033253) do
+
+  create_table "credits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "credit_balance"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "credits", ["user_id"], name: "index_credits_on_user_id"
 
   create_table "downloads", force: :cascade do |t|
     t.integer  "downloader_id"
@@ -39,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160501215533) do
     t.datetime "document_updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "credit_cost"
   end
 
   add_index "itineraries", ["user_id"], name: "index_itineraries_on_user_id"

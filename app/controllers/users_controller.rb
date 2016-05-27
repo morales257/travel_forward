@@ -22,6 +22,9 @@ class UsersController < ApplicationController
       #handle a successful save
       log_in @user
       flash[:success] = "Welcome to the App!"
+      @user.set_balance
+      #@credit = @user.credit.create(credit_params)
+      #@credit_balance = @credit.credit_balance
       redirect_to @user
       #is the same as redirect_to user_url(@user), which returns the user id
     else
@@ -35,4 +38,8 @@ private
     #initialization hash
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+
+  #def credit_params
+  #  params.require(:credit).permit(:credit_balance)
+  #end
 end

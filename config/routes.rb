@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'downloads/create'
+  #get 'downloads/create'
 
-  get 'itinerary/index'
+  #get 'itinerary/index'
 
   # You can have the root of your site routed with "root"
   root 'static_pages#home'

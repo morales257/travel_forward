@@ -12,7 +12,7 @@ class ItinerariesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = Itinerary.find_by(params[:user_id])
     @itinerary = Itinerary.find(params[:id])
     respond_to do |format|
       format.html
@@ -35,6 +35,7 @@ class ItinerariesController < ApplicationController
 
     if @itinerary.save
       # render the page with the users itineraries
+      current_user.upload_credits
       flash[:success] = "Your itinerary has been added!"
       redirect_to request.referrer || current_user
     else

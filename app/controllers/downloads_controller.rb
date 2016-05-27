@@ -4,10 +4,15 @@ class DownloadsController < ApplicationController
     #download id is established in the download form
     @itinerary = Itinerary.find(params[:downloaded_id])
 
+    if current_user.can_download(@itinerary)
+
       current_user.download(@itinerary)
 
       redirect_to @itinerary
+    else
+      flash[:notice] = "You do not have enough credits to download this itinerary."
 
+    end
   end
 
   def show
