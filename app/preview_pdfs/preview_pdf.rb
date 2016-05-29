@@ -5,11 +5,11 @@ class PreviewPDF < Prawn::Document
     super()
     @itin_preview = itinerary
     reader = PDF::Reader.new("public/#{@itin_preview.document_file_name}")
-    page = reader.page(1)
+    formatted_page = reader.page(1)
+    page_text = formatted_page.text
     #content = page.text
 
     #text "#{content}"
-    text page.text, :align => :left
-
+    text page_text
   end
 end
