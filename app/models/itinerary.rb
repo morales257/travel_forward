@@ -1,11 +1,16 @@
 class Itinerary < ActiveRecord::Base
   belongs_to :user
+  #before_save {self.trip_in_days = trip_duration.converted_to_days}
   validates :user_id, presence: true
   validates :country, presence: true
   validates :locations, presence: true
   validates :trip_duration, presence: true
   validates :budget, presence: true, numericality: { only_integer: true}
-  has_attached_file :document, styles: { medium: ["165x210#", :jpg]}
+  has_attached_file :document,
+                    #:storage =>:s3,
+                    #:s3_credentials => File.new('config/s3_info.yml'),
+                    #:s3_permissions => :public_read,
+                    styles: { medium: ["165x210#", :jpg]}
   validates_attachment_presence :document
   validates_attachment_content_type :document, content_type: ['application/pdf']
   after_initialize :set_cost
@@ -23,9 +28,6 @@ class Itinerary < ActiveRecord::Base
 
   def set_cost
     self.credit_cost ||= 1
-
   end
-
-
 
 end

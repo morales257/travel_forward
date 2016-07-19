@@ -1,52 +1,67 @@
-<div class = "col-md-8">
+<div class = "col-md-10">
 
-<h1>Your Itineraries</h1>
-<% if @user.itineraries.blank? %>
-  <h2>Your uploaded itineraries will go here. Add one now.</h2>
-<% else %>
-<% @user.itineraries.each do |itin| %>
-<div class = "col-md-2">
-<div class = "itin-preview-container">
+<div class = "row">
 
-<%= link_to image_tag(itin.document.url(:medium)), itin %>
-<div class= "itinerary-stats">
-<ul>
-  <li> Cities:  <%= itin.locations %> </li>
-  <li> Duration: <%= itin.trip_duration %> </li>
-  <li> Budget: $ <%= itin.budget %> </li>
-</ul>
+<div class = "user-itineraries">
 
-</div>
-</div>
-</div>
-<% end %>
-<% end %>
+  <h1>Your Itineraries</h1>
 
-<h1>Downloaded Itineraries</h1>
+  <% if @user.itineraries.blank? %>
+    <h2>Your uploaded itineraries will go here. Add one now.</h2>
+  <% else %>
+    <% @user.itineraries.each do |itin| %>
+    <div class = "col-md-2" style = "width: 20.8333333%">
+    <div class = "itin-preview-container">
 
-<% if @user.downloads.blank? %>
-
-<h2>You can find all the itineraries you downloaded here.</h2>
-
-<% else %>
-
- <% @user.downloads.each do |itin| %>
- <div class = "col-md-2">
-  <div class = "itin-preview-container">
-
-    <%= link_to image_tag(itin.downloaded.document.url(:medium)), itin %>
+    <%= link_to image_tag(itin.document.url(:medium)), itin %>
     <div class= "itinerary-stats">
-      <ul>
-        <li> Cities:  <%= itin.downloaded.locations %> </li>
-        <li> Duration: <%= itin.downloaded.trip_duration %> </li>
-        <li> Budget: $ <%= itin.downloaded.budget %> </li>
-      </ul>
+    <ul>
+      <li> Cities:  <%= itin.locations %> </li>
+      <li> Duration: <%= itin.trip_duration %> </li>
+      <li> Budget: $ <%= itin.budget %> </li>
+    </ul>
 
     </div>
-  </div>
+    </div>
+    </div>
+    <% end %>
+  <% end %>
 </div>
 
-<% end %>
-<% end %>
+</div>
+
+<div class = "row">
+
+
+<div class = "downloaded-itineraries">
+  <h1>Downloaded Itineraries</h1>
+
+  <% if @user.downloads.blank? %>
+
+  <h2>You can find all the itineraries you downloaded here.</h2>
+
+  <% else %>
+
+   <% @user.downloads.each do |itin| %>
+   <div class = "col-md-2">
+    <div class = "itin-preview-container">
+
+      <%= link_to image_tag(itin.downloaded.document.url(:medium)), itin %>
+      <div class= "itinerary-stats">
+        <ul>
+          <li> Cities:  <%= itin.downloaded.locations %> </li>
+          <li> Duration: <%= itin.downloaded.trip_duration %> </li>
+          <li> Budget: $ <%= itin.downloaded.budget %> </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <% end %>
+  <% end %>
+</div>
+</div>
+
 
 </div>

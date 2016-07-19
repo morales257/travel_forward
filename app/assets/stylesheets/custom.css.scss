@@ -3,10 +3,12 @@
 @import "bootstrap";
 
 //home page and layout
-.jumbotron {background-color: inherit}
+.jumbotron { background-color: inherit }
+
 body {
-  padding-top: 60px;
+  padding-top: 50px;
   font-family: 'Gotham Rounded A', 'Gotham Rounded B', 'Arial';
+  background-color: #F5FAF9;
 }
 
 section {
@@ -42,6 +44,8 @@ p {
   line-height: 1.7em;
 }
 
+
+
 .navbar-inverse {
   background-color: #0dd5b2;
   border-color: #0dd5b2;
@@ -66,6 +70,11 @@ p {
   color: #0dd5b2;
   font-weight: bold;
   line-height: 1.428571429;
+
+}
+
+#upload-container {
+    padding-top: 9px;
 }
 
 /* header */
@@ -177,12 +186,12 @@ input {
   }
 }
 
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
-}
+//.field_with_errors {
+//  @extend .has-error;;
+  //.form-control {
+    //color: $state-danger-text;;
+  //}
+//}
 
 .checkbox {
   /*margin-top: -10px;*/
@@ -216,18 +225,26 @@ span.document {
 
 .itinerary-stats {
   border-top: #000 1px solid;
+  padding: 2px;
+  height: 81px;
   background-color: #fff;
-  width: 165px;
-  li {
-    list-style-type: none;
-    //font-size: 11px;
+  width: 100%;
+  ul {
     text-align: left;
+    padding-left: 20px;
+    li {
+      list-style-type: none;
+      //font-size: 11px;
+      text-align: left;
+    }
   }
+
 }
 
 .itin-preview-container {
   background-color: #fff;
   width: 100%;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.15);
 }
 
 //Itinerary Page
@@ -243,4 +260,41 @@ span.document {
 
 .review-container {
   width: 734px;
+}
+
+.user-stats-align{
+  display: inline-block;
+  margin: 0 35px 0 35px;
+    li{
+        list-style-type: none;
+        vertical-align: middle;
+        text-align: center;
+      }
+}
+
+//User Page
+.user-info {
+  li{
+    list-style-type: none;
+    text-align: left;
+    vertical-align: baseline;
+  }
+}
+//Pages styling
+
+.class-description {
+  text-align: center;
+  margin: 0 auto 10px auto;
+}
+
+//modal pop up
+
+.upload-container {
+  width: 700px;
+  margin:auto;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #fff;
+  display: block;
+  margin-top: 50px;
 }

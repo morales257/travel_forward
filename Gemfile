@@ -6,7 +6,7 @@ gem 'rails', '4.2.5.1'
 #for hashing our passwords with has_secure_password
 gem 'bcrypt', '3.1.7'
 #converts bootstrap less to bootstrap sass
-gem 'bootstrap-sass', '3.2.0.0'
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -38,6 +38,8 @@ gem 'prawn', '~> 2.1'
 gem 'responders', '~> 2.0'
 # Geocode the countries for search
 gem 'geocoder'
+#S3 File Storage
+gem 'aws-sdk', '< 2.0'
 
 
 # Use ActiveModel has_secure_password

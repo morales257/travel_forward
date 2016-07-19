@@ -5,11 +5,12 @@
 <p> *Based on the search criteria this will take you to the country
 page and list out each itinerary available in that country.</p>
 
-<%= form_tag(itineraries_path, :method => "get", id: "itin-search", class: "form-inline") do %>
+<%= form_tag( {controller: "pages", action: "results"}, method: "post", id: "itin-search", class: "form-inline" )do %>
 
 
   <div class="form-group">
     <%= text_field_tag :search, params[:search], id: "country-form", placeholder: "What country do you want to visit?", class: 'form-control' %>
+    <div><%= hidden_field_tag :name, params[:search] %></div>
   </div>
   <div class="form-group">
     <%= text_field_tag :duration, params[:duration],id: "duration-form",placeholder: "How long do you want to go for?", class: 'form-control' %>

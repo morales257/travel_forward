@@ -13,12 +13,12 @@ class ItinerariesUploadTest < ActionDispatch::IntegrationTest
 
   test "itinerary upload must be valid" do
     log_in_as @user
-    get new_itinerary_path
-    assert_template "itineraries/new"
+    xhr :get, '/itineraries/new'
+    assert_template "itineraries/_new"
     assert_no_difference 'Itinerary.count' do
     post itineraries_path, itinerary: {country: "", trip_duration: "2 weeks", budget:3000, document: ""}
     end
-    assert_template "itineraries/new"
+    assert_template "itineraries/_new"
     assert_not flash.empty?
   end
 

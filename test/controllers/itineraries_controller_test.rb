@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ItinerariesControllerTest < ActionController::TestCase
   test "should get index" do
-    get :index
+    get :index, query: {search: "Italy"}
     assert_response :success
   end
 

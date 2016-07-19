@@ -1,13 +1,10 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
+  <aside class="col-md-2">
+    <section class="user-info">
       <h1>Hey <%= @user.name %></h1>
       <ul>
-        <li>Your itineraries</li>
-        <li>Liked Itineraries</li>
-        <li>Credits: <%= @user.credit.credit_balance %> | <%= @user.id %>
-        </li>
+        <li>Credits: <%= @user.credit.credit_balance %> | <%= @user.id %></li>
       </ul>
     </section>
   </aside>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519033253) do
+ActiveRecord::Schema.define(version: 20160717191343) do
 
   create_table "credits", force: :cascade do |t|
     t.integer  "user_id"
@@ -49,9 +49,23 @@ ActiveRecord::Schema.define(version: 20160519033253) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "credit_cost"
+    t.integer  "trip_in_days"
   end
 
   add_index "itineraries", ["user_id"], name: "index_itineraries_on_user_id"
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "name"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "author_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "background_file_name"
+    t.string   "background_content_type"
+    t.integer  "background_file_size"
+    t.datetime "background_updated_at"
+  end
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "rating"

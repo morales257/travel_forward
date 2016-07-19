@@ -8,9 +8,9 @@
 
     <div class = "review-container">
       <h2>What Travelers Thought</h2>
-      <%= link_to "Add Your Review", new_itinerary_review_path(@itinerary, @review) %>
 
       <% if @itinerary.reviews.count > 0 %>
+      <%= link_to "Add Your Review", new_itinerary_review_path(@itinerary, @review) %>
         <% @itinerary.reviews.each do |review| %>
         <div class = "reviews">
           <div class = "star-rating" data-score= <%= review.rating %> ></div>
@@ -25,7 +25,9 @@
         <% end %>
       <% else %>
       <h2>There are no reviews for this itinerary. Add one now.</h2>
-      <%= link_to "Add A Review", new_itinerary_review_path(@itinerary, @review),class: "btn-sm btn-primary", id: "review-button" %>
+      <%= link_to "Add A Review", new_itinerary_review_path(@itinerary, @review),
+       class: "btn-sm btn-primary", id: "review-button" %>
+       
       <% end %>
     </div>
   </div>
@@ -34,8 +36,7 @@
     <section>
       <h2><%= @itinerary.user.name %></h2>
 
-      make partial with user static_pages
-
+      <%= render 'users/stats' %>
       <h3>Duration</h3>
       <p><%= @itinerary.trip_duration%></p>
 
@@ -47,7 +48,7 @@
 
       <div class = 'star-rating' data-score = <%= avg_review(@itinerary) %> ></div>
       <p>
-        <%= link_to "See All Reviews", itinerary_reviews_path(@itinerary, @review), remote:true %>
+        <%= link_to "See All Reviews", itinerary_reviews_path(@itinerary, @review) %>
       </p>
 
       <% if logged_in? %>
@@ -63,6 +64,7 @@
   </div>
 
 </div>
+
 
 <script>
 $('.star-rating').raty({

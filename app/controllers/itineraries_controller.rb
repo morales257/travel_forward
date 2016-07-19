@@ -3,17 +3,27 @@ class ItinerariesController < ApplicationController
   before_action :logged_in_user, only: [:new, :create]
 
   def index
-    if params[:search].blank?
-      flash[:notice] = " You must enter a country you want to visit."
-      render 'static_pages/home'
-    else
-      @itineraries = Itinerary.near(params[:search])
-    end
+    #if params[:search].blank?
+    #  flash[:notice] = " You must enter a country you want to visit."
+    #  render 'static_pages/home'
+    #elsif
+    #  name = params[:search].titleize
+    #  @page = Page.find_by(name: name)
+    #  @itineraries = Itinerary.near(params[:search])
+
+    #  redirect_to @page
+
+    #else
+      @search = params[:query][:search]
+      duration = params[:query][:duration]
+      budget = params[:query][:budget]
+      @itineraries ||= Itinerary.where( "country = ? AND trip_duration < ? AND budget < ?", @search, duration, budget)
+    #end
   end
 
   def show
-    @user = Itinerary.find_by(params[:user_id])
     @itinerary = Itinerary.find(params[:id])
+    @user = User.find_by(params[@itinerary.user_id])
     respond_to do |format|
       format.html
       format.pdf do
@@ -27,22 +37,28 @@ class ItinerariesController < ApplicationController
 
   def new
     @itinerary = Itinerary.new
+
+    respond_to do |format|
+      format.js
+      #format.html
+    end
   end
 
   def create
     @itinerary = current_user.itineraries.build(itinerary_params)
     #@user = User.find(params[:id])
 
-    if @itinerary.save
-      # render the page with the users itineraries
-      current_user.upload_credits
-      flash[:success] = "Your itinerary has been added!"
-      redirect_to request.referrer || current_user
-    else
-      #show the add itinerary page
-      flash[:error] = @itinerary.errors.full_messages
-      render 'new'
-    end
+      if @itinerary.save
+        # render the page with the users itineraries
+        current_user.upload_credits
+        flash[:success] = "Your itinerary has been added!"
+        redirect_to current_user
+      else
+        #show the add itinerary page
+        flash[:error] = @itinerary.errors.full_messages
+        render '_new'
+      end
+
 
 
   end
@@ -52,5 +68,40 @@ class ItinerariesController < ApplicationController
   def itinerary_params
     params.require(:itinerary).permit(:country, :locations, :trip_duration,
     :budget, :document)
+  end
+
+  def find_itineraries
+    Itinerary.find(:all, conditions: conditions)
+  end
+
+  def country_conditions
+    ["itineraries.country LIKE ?", @search]
+  end
+
+  def duration_conditions
+    ["itineraries.duration =< ?", params[:duration]] unless params[:duration].blank?
+  end
+
+  def budget_conditions
+    ["itineraries.budget =< ?", params[:budget]] unless params[:budget].blank?
+  end
+
+
+  #returns array of all conditions
+  def conditions
+    [conditions_clauses.join('AND'), *conditions_options]
+  end
+  #returns the first value in condition_parts
+  def conditions_clauses
+    condition_parts.map { |condition| condition.first }
+  end
+  #returns an array of all send methods in condition_parts
+  def conditions_options
+    condition_parts.map { |condition| condition[1..-1] }.flatten
+  end
+  #returns an array of send methods with arguments matching "conditions"
+  # that are not nil
+  def condition_parts
+    private_methods(false).grep(/_conditions$/).map { |match| send(match) }.compact
   end
 end

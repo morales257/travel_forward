@@ -25,7 +25,7 @@ module ItineraryApp
 
     #config.web_console.development_only = false
 
-
-
+    config.autoload_paths += %W(#{config.root}/lib)
+    
   end
 end

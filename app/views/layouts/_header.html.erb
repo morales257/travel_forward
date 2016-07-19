@@ -3,7 +3,7 @@
     <%= link_to "Itinerary App", root_path , id: "logo"%>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= button_to "Upload+", new_itinerary_path, method: 'get', class: "btn btn-md btn-primary", id: "upload-button" %></li>
+        <li  id = "upload-container"><%= button_to "Upload+", new_itinerary_path, method: 'get', remote: true, class: "btn btn-md btn-primary", id: "upload-button" %></li>
         <% if logged_in? %>
           <li><%= link_to "Users", '#' %></li>
           <li class="dropdown">
@@ -26,5 +26,7 @@
     </nav>
 
   </div>
+
+
 
 </header>

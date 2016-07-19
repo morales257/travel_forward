@@ -1,18 +1,19 @@
 <%= form_for(@itinerary, html: { multipart: true } ) do |f| %>
 
 <%= f.label :country %>
-<%= f.text_field :country %>
+<%= f.text_field :country, style: "margin-bottom:5px;" %>
 
 <%= f.label "Places You Went To" %>
-<%= f.text_field :locations %>
+<%= f.text_field :locations, style: "margin-bottom:5px;"  %>
 
 <%= f.label :trip_duration %>
-<%= f.text_field :trip_duration %>
+<%= f.text_field :trip_duration, style: "margin-bottom:5px;"  %>
 
 <%= f.label :budget %>
-<%= f.text_field :budget %>
+<%= f.text_field :budget, style: "margin-bottom:5px;"  %>
 <span class="document" >
-<%= f.file_field :document, accept: 'application/pdf' %>
+<%= f.label :itinerary%>
+<%= f.file_field :document, accept: 'application/pdf', style: "margin-bottom:5px;"  %>
 </span>
 <%= f.submit "Add Itinerary", class: "btn btn-primary" %>
 

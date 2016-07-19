@@ -1,5 +1,4 @@
 
 
-$('#itinerary-form').html("<%= j (render 'form')%>");
-$('#itinerary-form').slideDown(350);
-$('#add-itin').hide();
+$("#upload-modal").html("<%= escape_javascript(render 'new')%>");
+$("#upload-modal").modal("show")
