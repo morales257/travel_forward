@@ -23,8 +23,8 @@ Rails.application.routes.draw do
   resources :pages, only: [:new, :create,:show, :edit, :update,:destroy]
   post 'pages/results'=> 'pages#results'
 
-  DynamicRouter.load
-
+  #DynamicRouter.load
+  get ':name', :to => "pages#show"
 
   mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
 

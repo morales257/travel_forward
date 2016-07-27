@@ -1,6 +1,7 @@
 class Itinerary < ActiveRecord::Base
   belongs_to :user
-  #before_save {self.trip_in_days = trip_duration.converted_to_days}
+  before_save {self.trip_in_days = trip_duration.converted_to_days}
+  before_save {self.country = country.downcase}
   validates :user_id, presence: true
   validates :country, presence: true
   validates :locations, presence: true

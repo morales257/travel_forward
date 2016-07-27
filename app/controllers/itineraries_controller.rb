@@ -15,9 +15,9 @@ class ItinerariesController < ApplicationController
 
     #else
       @search = params[:query][:search]
-      duration = params[:query][:duration]
+      duration = params[:query][:duration].converted_to_days
       budget = params[:query][:budget]
-      @itineraries ||= Itinerary.where( "country = ? AND trip_duration < ? AND budget < ?", @search, duration, budget)
+      @itineraries ||= Itinerary.where( "country = ? AND trip_in_days <= ? AND budget <= ?", @search, duration, budget)
     #end
   end
 
@@ -70,38 +70,5 @@ class ItinerariesController < ApplicationController
     :budget, :document)
   end
 
-  def find_itineraries
-    Itinerary.find(:all, conditions: conditions)
-  end
 
-  def country_conditions
-    ["itineraries.country LIKE ?", @search]
-  end
-
-  def duration_conditions
-    ["itineraries.duration =< ?", params[:duration]] unless params[:duration].blank?
-  end
-
-  def budget_conditions
-    ["itineraries.budget =< ?", params[:budget]] unless params[:budget].blank?
-  end
-
-
-  #returns array of all conditions
-  def conditions
-    [conditions_clauses.join('AND'), *conditions_options]
-  end
-  #returns the first value in condition_parts
-  def conditions_clauses
-    condition_parts.map { |condition| condition.first }
-  end
-  #returns an array of all send methods in condition_parts
-  def conditions_options
-    condition_parts.map { |condition| condition[1..-1] }.flatten
-  end
-  #returns an array of send methods with arguments matching "conditions"
-  # that are not nil
-  def condition_parts
-    private_methods(false).grep(/_conditions$/).map { |match| send(match) }.compact
-  end
 end

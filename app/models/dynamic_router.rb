@@ -1,5 +1,6 @@
 class DynamicRouter
   def self.load
+    return unless ActiveRecord::Base.connection.table_exists? 'pages'
     Rails.application.routes.draw do
      Page.all.each do |pg|
         puts "Routing #{pg.name}"

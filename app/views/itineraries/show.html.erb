@@ -27,7 +27,7 @@
       <h2>There are no reviews for this itinerary. Add one now.</h2>
       <%= link_to "Add A Review", new_itinerary_review_path(@itinerary, @review),
        class: "btn-sm btn-primary", id: "review-button" %>
-       
+
       <% end %>
     </div>
   </div>
@@ -51,7 +51,7 @@
         <%= link_to "See All Reviews", itinerary_reviews_path(@itinerary, @review) %>
       </p>
 
-      <% if logged_in? %>
+      <% if logged_in? && current_user != @itinerary.user %>
       <% unless current_user.downloaded?(@itinerary) %>
         <%= render 'download' %>
       <% end %>

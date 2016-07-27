@@ -1,34 +1,52 @@
 <% provide(:title, "Home")%>
-<div class="jumbotron">
-<h1>Home Page</h1>
+<div class = "home-page-container">
+  <div class="jumbotron">
 
-<p> *Based on the search criteria this will take you to the country
-page and list out each itinerary available in that country.</p>
-
-<%= form_tag( {controller: "pages", action: "results"}, method: "post", id: "itin-search", class: "form-inline" )do %>
+    <h1>Find Your Next Trip</h1>
 
 
-  <div class="form-group">
-    <%= text_field_tag :search, params[:search], id: "country-form", placeholder: "What country do you want to visit?", class: 'form-control' %>
-    <div><%= hidden_field_tag :name, params[:search] %></div>
+    <%= form_tag( {controller: "pages", action: "results"}, method: "post", id: "itin-search", class: "form-inline" )do %>
+
+
+      <div class="form-group">
+        <%= text_field_tag :search, params[:search], id: "country-form", placeholder: "What country do you want to visit?", class: 'form-control' %>
+        <div><%= hidden_field_tag :name, params[:search] %></div>
+      </div>
+      <div class="form-group">
+        <%= text_field_tag :duration, params[:duration],id: "duration-form",placeholder: "How long do you want to go for?", class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= number_field_tag :budget, params[:budget], placeholder: "What is your budget?", class: 'form-control' %>
+      </div>
+      <%= button_tag "Find Your Next Trip", class: "btn btn-default", id: "search-button", type: 'submit'%>
+    <% end %>
   </div>
-  <div class="form-group">
-    <%= text_field_tag :duration, params[:duration],id: "duration-form",placeholder: "How long do you want to go for?", class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= text_field_tag :budget, params[:budget], placeholder: "What is your budget?", class: 'form-control' %>
-  </div>
-  <%= button_tag "Find Your Next Trip", class: "btn btn-default", id: "search-button", type: 'submit'%>
-<% end %>
 
 </div>
 
-<p>------------------------------------------------------------------------ </p>
+<div class = "website-information">
+  <div class = "step-container">
+    <div class = "step-box" id = "stepone-box">
+      <h1>Search</h1>
+      <p>Search our database for itineries submitted by travelers from all
+        over the world.</p>
+    </div>
 
-<p> Below the fold there will be brief information on what this product is and
-why its of value to the visitor.</p>
+    <div class = "step-box" id = "steptwo-box">
+      <h1>Save</h1>
+      <p>Preview an itinerary and instantly download it to take with you on your
+        next vacation. </p>
+    </div>
 
-<p>Sign up today to get thousands of itineraries and upload your travel
-  experiences.</p>
+    <div class = "step-box" id = "stepthree-box">
+      <h1>Contribute</h1>
+      <p>Upload your itineraries and earn credits to download more itineraries. </p>
+    </div>
+  </div>
+</div>
 
-  <%= link_to "Sign Up", signup_path , class: "btn btn-lg btn-primary" %>
+
+<h1>Sign up today to get itineraries and upload your travel
+  experiences.</h1>
+
+  <%= link_to "Sign Up", signup_path , class: "btn btn-lg btn-primary" , id: "signup-button"%>
