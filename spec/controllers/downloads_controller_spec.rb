@@ -5,10 +5,10 @@ RSpec.describe DownloadsController, type: :controller do
 
   describe "post #create" do
 
-    it "redirect to login when not logged in" do
-      post :create
-      expect(response).to redirect_to("/login")
-    end
+   it "redirect to login when not logged in" do
+    post :create
+    expect(response).to redirect_to("/login")
+   end
 
     context "when user is logged in" do
       before(:each) do

@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include ItinerariesHelper
 
+  def not_found
+    render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+  end
   private
 
   #Confirm a logged-in user_id
@@ -14,9 +17,17 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       flash[:danger] = "Please log in."
       #redirect_to login_url
-    #because upload is accessed through ajax, we use JS to redirect 
-      render :js => "window.location = '#{login_path}'"
+    #because upload is accessed through ajax, we use JS to redirect
+    respond_to do |format|
+      format.js {render :js => "window.location = '#{login_path}'"}
+      format.html { redirect_to login_url}
     end
+
+    end
+  end
+
+  def admin_user
+    redirect_to root_url unless current_user.admin?
   end
 
 end

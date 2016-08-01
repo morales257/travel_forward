@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @user = User.find_by(params[:user_id])
@@ -22,8 +23,12 @@ class PagesController < ApplicationController
   def show
 
     if params[:duration].nil? || params[:budget].nil?
-      @page = Page.find_by_name(params[:name])
-      @itineraries = Itinerary.near(@page.name)
+      if Page.exists?(name: params[:name])
+        @page = Page.find_by_name(params[:name])
+        @itineraries = Itinerary.near(@page.name)
+      else
+        not_found
+      end
     else
       @page = Page.find_by_name(params[:name])
       duration = params[:duration].converted_to_days
@@ -58,6 +63,8 @@ class PagesController < ApplicationController
       #"/iteneraries?search=Italy&second_value=foobar"
     end
   end
+
+
 
   private
 

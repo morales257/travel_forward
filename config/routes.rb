@@ -25,7 +25,6 @@ Rails.application.routes.draw do
 
   #DynamicRouter.load
   get ':name', :to => "pages#show"
-  
 
   mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
 
