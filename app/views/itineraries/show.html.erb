@@ -2,9 +2,16 @@
 <div class="row">
   <div class="col-md-8">
     <h1> <%= @itinerary.user_id %>'s <%= @itinerary.country%> Guide </h1>
-    <iframe class="itinerary-viewer" src= "<%=  pdfjs.full_path(file: "#{itinerary_path(@itinerary, format: :pdf)}") %>"
-    frameborder="0">
-    </iframe>
+    <div class = "preview-container">
+      <div class = "preview-msg">
+        <h2>This is a preview. Click download to get the full version!</h2>
+      </div>
+
+      <iframe class="itinerary-viewer" src= "<%=  pdfjs.full_path(file: "#{itinerary_path(@itinerary, format: :pdf)}") %>"
+      frameborder="0">
+      </iframe>
+    </div>
+
 
     <div class = "review-container">
       <h2>What Travelers Thought</h2>

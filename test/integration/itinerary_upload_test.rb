@@ -6,10 +6,10 @@ class ItinerariesUploadTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
   end
 
-  test "redirect uploader if not logged in" do
-    get new_itinerary_path
-    assert_redirected_to login_path
-  end
+#  test "redirect uploader if not logged in" do
+#    get new_itinerary_path
+#    assert_redirected_to login_path
+#  end
 
   test "itinerary upload must be valid" do
     log_in_as @user

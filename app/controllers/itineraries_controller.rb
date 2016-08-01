@@ -1,5 +1,5 @@
 class ItinerariesController < ApplicationController
-  respond_to :html, :js
+  #respond_to :html, :js
   before_action :logged_in_user, only: [:new, :create]
 
   def index
@@ -37,11 +37,6 @@ class ItinerariesController < ApplicationController
 
   def new
     @itinerary = Itinerary.new
-
-    respond_to do |format|
-      format.js
-      #format.html
-    end
   end
 
   def create

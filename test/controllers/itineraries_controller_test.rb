@@ -6,10 +6,10 @@ class ItinerariesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should redirect itinerary Upload when not logged in" do
-    xhr :get, :new
-    assert_redirected_to login_url
-  end
+#  test "should redirect itinerary Upload when not logged in" do
+#    xhr :get, :new
+#    assert_redirected_to login_url
+#  end
 
 
 end

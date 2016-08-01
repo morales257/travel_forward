@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  #respond_to :html, only: [:new]
   def new
   end
 

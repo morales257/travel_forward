@@ -13,7 +13,9 @@ class ApplicationController < ActionController::Base
   def logged_in_user
     unless logged_in?
       flash[:danger] = "Please log in."
-      redirect_to login_url
+      #redirect_to login_url
+    #because upload is accessed through ajax, we use JS to redirect 
+      render :js => "window.location = '#{login_path}'"
     end
   end
 

@@ -316,6 +316,18 @@ span.document {
   width: 734px;
 }
 
+.preview-msg {
+  width: 734px;
+  margin-top: 250px;
+  position: absolute;
+  z-index: 1;
+  border-style: solid;
+  border-color: #000;
+
+
+}
+
+
 #review-button {
   text-align: center;
   margin: auto;
