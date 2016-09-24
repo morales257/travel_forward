@@ -1,28 +1,7 @@
-== README
+== About Travel Forward
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+After observing that most people ask their peers about travel advice before doing any research themselves, I decided to build Travel Forward.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Travel forward is a place for travelers to share their itineraries and donwload others in return.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
