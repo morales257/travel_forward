@@ -1,5 +1,5 @@
 class ItinerariesController < ApplicationController
-  #respond_to :html, :js
+  # respond_to :html, :js
   before_action :logged_in_user, only: [:new, :create]
 
   def index
@@ -14,10 +14,10 @@ class ItinerariesController < ApplicationController
     #  redirect_to @page
 
     #else
-      @search = params[:query][:search]
-      duration = params[:query][:duration].converted_to_days
-      budget = params[:query][:budget]
-      @itineraries ||= Itinerary.where( "country = ? AND trip_in_days <= ? AND budget <= ?", @search, duration, budget)
+    @search = params[:query][:search]
+    duration = params[:query][:duration].converted_to_days
+    budget = params[:query][:budget]
+    @itineraries ||= Itinerary.where('country = ? AND trip_in_days <= ? AND budget <= ?', @search, duration, budget)
     #end
   end
 
@@ -29,7 +29,7 @@ class ItinerariesController < ApplicationController
       format.pdf do
         pdf = PreviewPDF.new(@itinerary)
         send_data pdf.render, filename: "#{@itinerary.document_file_name}_preview.pdf",
-        type: "application/pdf", disposition: "inline"
+        type: 'application/pdf', disposition: 'inline'
       end
     end
 
@@ -43,18 +43,16 @@ class ItinerariesController < ApplicationController
     @itinerary = current_user.itineraries.build(itinerary_params)
     #@user = User.find(params[:id])
 
-      if @itinerary.save
-        # render the page with the users itineraries
-        current_user.upload_credits
-        flash[:success] = "Your itinerary has been added!"
-        redirect_to current_user
-      else
-        #show the add itinerary page
-        flash[:error] = @itinerary.errors.full_messages
-        render '_new'
-      end
-
-
+    if @itinerary.save
+      # render the page with the users itineraries
+      current_user.upload_credits
+      flash[:success] = 'Your itinerary has been added!'
+      redirect_to current_user
+    else
+      # show the add itinerary page
+      #flash.now[:danger] = @itinerary.errors.full_messages
+      render '_new'
+    end
 
   end
 
@@ -64,6 +62,5 @@ class ItinerariesController < ApplicationController
     params.require(:itinerary).permit(:country, :locations, :trip_duration,
     :budget, :document)
   end
-
 
 end

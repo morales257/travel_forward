@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     @page = Page.new(pages_params)
 
     if @page.save
-      flash[:success] = "New country page has been added."
+      flash[:success] = 'New country page has been added.'
       redirect_to @page
     else
       flash[:error] = @page.errors.full_messages
