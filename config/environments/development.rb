@@ -40,7 +40,14 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.paperclip_defaults = {
-    :s3_host_name => 's3-us-west-2.amazonaws.com'
+    :storage =>:s3,
+    :s3_credentials => {
+      :access_key_id => ENV['S3_ACCESS_KEY'],
+      :secret_access_key => ENV['S3_SECRET_KEY']
+    },
+    :bucket => ENV['S3_BUCKET_NAME'],
+    :s3_permissions => :public_read,
+    styles: { medium: "300x300>", resize: "50%"}
   }
 
   #ImageMagick path for Paperclip to find
