@@ -20,10 +20,13 @@
   <% if @itineraries.blank? %>
   <div class= "jumbotron">
 
-  <img src="https://d13yacurqjgara.cloudfront.net/users/502620/screenshots/1523145/fighter_plane_line.gif"
-  style= "width:400px;height:300px">
-  <br>
-   <h3> Sorry, we have no itineraries for that country. </h3>
+  <div id = "itinerary-not-found">
+    <img src="https://d13yacurqjgara.cloudfront.net/users/502620/screenshots/1523145/fighter_plane_line.gif"
+    style= "width:400px;height:300px">
+    <br>
+     <h3> Sorry, we have no itineraries for that country. </h3>
+  </div>
+
 
   </div>
   <% else %>
