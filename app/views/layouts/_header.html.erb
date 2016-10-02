@@ -1,11 +1,11 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "Itinerary App", root_path , id: "logo"%>
+    <%= link_to "Travel Forward", root_path , id: "logo"%>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li  id = "upload-container"><%= button_to "Upload+", new_itinerary_path, method: 'get', remote: true, class: "btn btn-md btn-primary", id: "upload-button" %></li>
         <% if logged_in? %>
-          
+
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
