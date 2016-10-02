@@ -18,7 +18,6 @@
   </div>
 
   <% if @itineraries.blank? %>
-  <div class= "jumbotron">
 
   <div id = "itinerary-not-found">
     <img src="https://d13yacurqjgara.cloudfront.net/users/502620/screenshots/1523145/fighter_plane_line.gif"
@@ -27,8 +26,6 @@
      <h3> Sorry, we have no itineraries for that country. </h3>
   </div>
 
-
-  </div>
   <% else %>
   <% @itineraries.each do |itin| %>
   <div class = "col-md-2">
