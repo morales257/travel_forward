@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011011452) do
+ActiveRecord::Schema.define(version: 20161011013833) do
 
   create_table "credits", force: :cascade do |t|
     t.integer  "user_id"
@@ -37,10 +37,9 @@ ActiveRecord::Schema.define(version: 20161011011452) do
     t.string   "country"
     t.string   "locations"
     t.string   "trip_duration"
-    t.integer  "budget"
     t.text     "tip"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "user_id"
     t.string   "document_file_name"
     t.string   "document_content_type"
@@ -50,6 +49,7 @@ ActiveRecord::Schema.define(version: 20161011011452) do
     t.float    "longitude"
     t.integer  "credit_cost"
     t.integer  "trip_in_days"
+    t.integer  "budget",                default: 0
   end
 
   add_index "itineraries", ["user_id"], name: "index_itineraries_on_user_id"

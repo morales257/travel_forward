@@ -52,7 +52,6 @@ class PagesController < ApplicationController
       flash[:notice] = " You must enter a country you want to visit."
       render 'static_pages/home'
     elsif Page.exists?(name: params[:search])
-      params[:budget] ||= 0
       #this would have been loaded at the start of the app, and routes to pages#show
       #redirect_to "/#{params[:search]}?query%5Bbudget%5D=#{params[:budget]}&query%5Bduration%5D=#{params[:duration]}"
       redirect_to "/#{params[:search]}?budget=#{params[:budget]}&duration=#{params[:duration]}"
