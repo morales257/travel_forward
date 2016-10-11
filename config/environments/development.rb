@@ -41,11 +41,11 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     :storage =>:s3,
+    :bucket => ENV['S3_BUCKET_NAME'],
     :s3_credentials => {
       :access_key_id => ENV['S3_ACCESS_KEY'],
       :secret_access_key => ENV['S3_SECRET_KEY']
     },
-    :bucket => ENV['S3_BUCKET_NAME'],
     :s3_permissions => :public_read,
     styles: { medium: "300x300>", resize: "50%"}
   }
