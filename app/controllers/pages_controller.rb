@@ -48,6 +48,7 @@ class PagesController < ApplicationController
 
 #routes the search from the home page to the country/default page
   def results
+    params[:budget] = 0 unless !params[:budget].empty?
     if params[:search].blank?
       flash[:notice] = " You must enter a country you want to visit."
       render 'static_pages/home'
