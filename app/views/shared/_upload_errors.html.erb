@@ -1,8 +1,8 @@
 <% if @itinerary.errors.any? %>
 <div id="error_explanation">
     <div class="alert alert-danger">
-The form contains <%= pluralize(@itinerary.errors.count, "error") %>
-</div>
+      The form contains <%= pluralize(@itinerary.errors.count, "error") %>
+    </div>
 <ul>
   <% @itinerary.errors.full_messages.each do |msg| %>
   <li><%= msg %></li>

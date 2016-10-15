@@ -1,5 +1,4 @@
 class ItinerariesController < ApplicationController
-  # respond_to :html, :js
   before_action :logged_in_user, only: [:new, :create]
 
   def index
@@ -42,7 +41,6 @@ class ItinerariesController < ApplicationController
   def create
     @itinerary = current_user.itineraries.build(itinerary_params)
     #@user = User.find(params[:id])
-
     if @itinerary.save
       # render the page with the users itineraries
       current_user.upload_credits
@@ -53,7 +51,6 @@ class ItinerariesController < ApplicationController
       #flash.now[:danger] = @itinerary.errors.full_messages
       render '_new'
     end
-
   end
 
   private

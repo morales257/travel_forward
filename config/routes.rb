@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  #get 'itineraries/new' => 'itineraries#new', defaults: { format: 'js' }
+
   resources :downloads, only: [:create, :show]
 
   resources :pages, only: [:new, :create,:show, :edit, :update,:destroy]

@@ -8,9 +8,10 @@ class Itinerary < ActiveRecord::Base
   validates :trip_duration, presence: true
   validates :budget, presence: true, numericality: { only_integer: true}
   has_attached_file :document,
-                    #:storage =>:s3,
-                    #:s3_credentials => File.new('config/s3_info.yml'),
-                    #:s3_permissions => :public_read,
+                    :storage =>:s3,
+                    :s3_host_name => 's3-us-west-2.amazonaws.com',
+                    :s3_credentials => File.new('config/s3_info.yml'),
+                    :s3_permissions => :public_read,
                     styles: { medium: ["165x210#", :jpg]}
   validates_attachment_presence :document
   validates_attachment_content_type :document, content_type: ['application/pdf']
