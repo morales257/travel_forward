@@ -2,4 +2,4 @@ development:
   itinerary_path: public/#{@itin_preview.document_file_name}
 
 production:
-  itinerary_path: <%= itinerary_path "#{@itin_preview.document_file_name}" %>
+  itinerary_path: <%= itinerary_path "#{@itin_preview}" %>
