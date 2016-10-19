@@ -1,7 +1,7 @@
 <% provide(:title," #{@itinerary.country} Guide")%>
 <div class="row">
   <div class="col-md-8">
-    <h1> <%= @itinerary.name %>'s <%= @itinerary.country%> Guide </h1>
+    <h1> <%= @itinerary.user.name %>'s <%= @itinerary.country%> Guide </h1>
     <div class = "preview-container">
       <div class = "preview-msg">
         <h2>This is a preview. Click download to get the full version!</h2>
