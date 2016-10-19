@@ -1,5 +1,5 @@
 development:
-  itinerary_path: #{Rails.root}/public/#{@itin_preview.document_file_name}
+  itinerary_path: public/#{@itin_preview.document_file_name}
 
 production:
   itinerary_path: <%= asset_path "#{@itin_preview.document_file_name}" %>
