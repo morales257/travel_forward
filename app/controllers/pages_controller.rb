@@ -22,7 +22,7 @@ class PagesController < ApplicationController
 
   def show
 
-    if params[:duration].nil? || params[:budget].nil?
+    if params[:duration].empty? || params[:budget].empty?
       if Page.exists?(name: params[:name])
         @page = Page.find_by_name(params[:name])
         @itineraries = Itinerary.near(@page.name)
@@ -54,14 +54,11 @@ class PagesController < ApplicationController
       render 'static_pages/home'
     elsif Page.exists?(name: params[:search])
       #this would have been loaded at the start of the app, and routes to pages#show
-      #redirect_to "/#{params[:search]}?query%5Bbudget%5D=#{params[:budget]}&query%5Bduration%5D=#{params[:duration]}"
       redirect_to "/#{params[:search]}?budget=#{params[:budget]}&duration=#{params[:duration]}"
     else
-      #session[:search] = params[:search]
       redirect_to controller: 'itineraries', action: 'index', query: { search: params[:search],
       duration: params[:duration], budget: params[:budget] }
-      #"/pages/results?search=Italy"
-      #"/iteneraries?search=Italy&second_value=foobar"
+
     end
   end
 

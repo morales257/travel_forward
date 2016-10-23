@@ -2,22 +2,10 @@ class ItinerariesController < ApplicationController
   before_action :logged_in_user, only: [:new, :create]
 
   def index
-    #if params[:search].blank?
-    #  flash[:notice] = " You must enter a country you want to visit."
-    #  render 'static_pages/home'
-    #elsif
-    #  name = params[:search].titleize
-    #  @page = Page.find_by(name: name)
-    #  @itineraries = Itinerary.near(params[:search])
-
-    #  redirect_to @page
-
-    #else
     @search = params[:query][:search]
     duration = params[:query][:duration].converted_to_days
     budget = params[:query][:budget]
     @itineraries ||= Itinerary.where('country = ? AND trip_in_days <= ? AND budget <= ?', @search, duration, budget)
-    #end
   end
 
   def show
@@ -40,15 +28,12 @@ class ItinerariesController < ApplicationController
 
   def create
     @itinerary = current_user.itineraries.build(itinerary_params)
-    #@user = User.find(params[:id])
     if @itinerary.save
       # render the page with the users itineraries
       current_user.upload_credits
       flash[:success] = 'Your itinerary has been added!'
       redirect_to current_user
     else
-      # show the add itinerary page
-      #flash.now[:danger] = @itinerary.errors.full_messages
       render '_new'
     end
   end
